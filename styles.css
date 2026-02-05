@@ -1,0 +1,163 @@
+:root{
+  /* Palette: fuchsia, orange, grays */
+  --bg:#07070a; /* near-black */
+  --card:#0f1014;
+  --text:#f3eef2;
+  --muted:#bfc3c7;
+  --fuchsia:#ff2d95;
+  --orange:#ff9f43;
+  --border:rgba(255,255,255,.06);
+  --accent-gradient:linear-gradient(135deg,var(--fuchsia),var(--orange));
+}
+
+/* Reset */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 15% 10%, rgba(255,45,149,.12), transparent 60%),
+    radial-gradient(900px 500px at 85% 30%, rgba(255,159,67,.08), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* Layout */
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+.nav{
+  position:sticky; top:0;
+  backdrop-filter: blur(10px);
+  background: rgba(7,7,10,.72);
+  border-bottom:1px solid var(--border);
+  z-index:10;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+/* Brand & logo */
+.brand{display:flex;align-items:center;gap:16px}
+.logo{
+  width:56px;height:56px;border-radius:12px;
+  /* Prefer an SVG image at /assets/logo.svg; fallback to gradient */
+  background-image: url('/assets/logo.svg'), var(--accent-gradient);
+  background-size:cover, cover;
+  background-position:center;
+  border:1px solid rgba(255,255,255,.06);
+  display:grid;place-items:center;
+  box-shadow: 0 6px 20px rgba(255,45,149,.07), inset 0 1px 0 rgba(255,255,255,.02);
+  color:transparent; /* ensures SVG visible */
+  flex: 0 0 56px;
+}
+
+/* Business name: larger, bolder, gradient text */
+.brand h1{
+  font-size:44px;
+  line-height:1;
+  margin:0;
+  font-weight:900;
+  letter-spacing: .6px;
+  /* gradient text */
+  background: linear-gradient(90deg,var(--fuchsia),var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tagline */
+.brand small{
+  display:block;color:var(--muted);font-size:15px;margin-top:4px;
+  font-weight:600;
+}
+
+/* Nav links */
+.links{display:flex;flex-wrap:wrap;gap:14px}
+.links a{
+  padding:10px 12px;border-radius:10px;
+  color:var(--muted);
+  border:1px solid transparent;
+}
+.links a:hover{
+  color:var(--text);
+  border-color:var(--border);
+  background:rgba(255,255,255,.02);
+  box-shadow: 0 6px 18px rgba(255,45,149,.03);
+}
+
+/* Hero / cards */
+.hero{padding:44px 0 18px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , rgba(15,16,20,.75);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow: 0 12px 36px rgba(3,3,6,.45);
+}
+
+/* Typography */
+.kicker{
+  color:var(--fuchsia);
+  font-weight:700;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+  font-size:12px;
+}
+.h1{font-size:38px;line-height:1.1;margin:10px 0 10px}
+.p{color:var(--muted);margin:0 0 14px}
+
+/* Buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:10px 14px;border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn.primary{
+  background: var(--accent-gradient);
+  color:#0b0710;
+  border: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 8px 30px rgba(255,45,149,.12);
+}
+.btn:hover{transform:translateY(-2px);box-shadow: 0 14px 40px rgba(0,0,0,.45)}
+
+/* Grid and cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+/* Lists & badges */
+.list{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+.badge{
+  display:inline-block;
+  padding:6px 10px;border-radius:999px;
+  background: linear-gradient(90deg, rgba(255,45,149,.12), rgba(255,159,67,.10));
+  border:1px solid rgba(255,45,149,.18);
+  color:var(--text);
+  font-size:12px;
+}
+
+/* Sections & meta */
+.section{padding:18px 0 30px}
+.section h2{margin:0 0 10px}
+.meta{color:var(--muted);font-size:14px;margin:0}
+
+/* Footer */
+.footer{
+  margin-top:30px;
+  border-top:1px solid var(--border);
+  padding:18px 0 26px;
+  color:var(--muted);
+  font-size:12px;
+}
+hr.soft{border:none;border-top:1px solid var(--border);margin:14px 0}
+
+/* Small accessibility / contrast adjustments */
+@media (prefers-reduced-motion:reduce){
+  .btn, .btn:hover{transition:none;transform:none}
+}
